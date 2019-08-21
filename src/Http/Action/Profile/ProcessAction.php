@@ -143,6 +143,7 @@ final class ProcessAction
             'speaker_departure_flight' => $request->get('speaker_departure_flight'),
             'transportation'   => (int) $request->get('transportation'),
             'hotel'            => (int) $request->get('hotel'),
+            'speaker_dinner'   => (int) $request->get('speaker_dinner'),
             'dietary_preference' => $request->get('dietary_preference'),
             'food_allergies' => $request->get('food_allergies'),
             'pickup'           => $request->get('pickup') ?: 'no',

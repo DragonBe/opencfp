@@ -92,6 +92,7 @@ final class EditAction
             'speaker_departure_time' => $speakerData['speaker_departure_time'],
             'speaker_departure_flight' => $speakerData['speaker_departure_flight'],
             'transportation'   => $speakerData['transportation'],
+            'speaker_dinner'   => $speakerData['speaker_dinner'],
             'hotel'            => $speakerData['hotel'],
             'dietary_preference' => $speakerData['dietary_preference'],
             'food_allergies' => $speakerData['food_allergies'],

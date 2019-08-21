@@ -36,6 +36,13 @@
                     <input id="form-hotel" name="hotel" type="checkbox" value="1" {% if hotel == '1' %}checked{% endif %}>
                     <label for="form-hotel" class="text-base text-normal text-dark">I need help with hotel cost</label>
                 </div>
+
+                <h3 class="text-base text-dark-soft mt-4">Speaker Dinner</h3>
+                <p>Speaker dinner will happen on {{ site.speaker_dinner_date | date(site.date_format, false) }}.</p>
+                <div>
+                    <input id="form-speaker_dinner" name="speaker_dinner" type="checkbox" value="1" {% if speaker_dinner == '1' %}checked{% endif %}>
+                    <label for="form-speaker_dinner" class="text-base text-normal text-dark">Yes, I will be present</label>
+                </div>
             {% endif %}
         </div>
 
