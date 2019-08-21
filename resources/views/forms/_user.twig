@@ -45,9 +45,12 @@
             <p class="text-xs text-em mb-2 text-dark-soft">Speaker bio can be written using <a href="https://daringfireball.net/projects/markdown/basics" target="_blank" class="text-underline" rel="noopener noreferrer">markdown</a> to support links</p>
 
             {% if site.online_conference == false %}
+
+                <h3 class="text-base text-dark-soft mt-4">Your travel details</h3>
                 <label for="form-user-airport">Departing Airport Code</label>
                 <input id="form-user-airport" type="text" name="airport" placeholder="3 Characters" value="{{ airport | default('') }}">
 
+                <h4 class="text-base text-dark-soft mt-4">Pickup and dropoff</h4>
                 <p>We offer a pick-up and drop off service for your arrival and departure.</p>
                 <div class="form-check-inline">
                     <input id="form-user-pickup-no" name="pickup" type="hidden" value="no">
@@ -57,8 +60,46 @@
                     <input id="form-user-dropoff-yes" name="dropoff" type="checkbox" value="yes"{% if dropoff == 'yes' %}checked="checked"{% endif %}>
                     <label for="form-user-dropoff-yes">Do you like us to drop you off?</label>
                 </div>
+
+                <h4 class="text-base text-dark-soft mt-4">Your Itinerary</h4>
+                <p>Please share your travel information with us:</p>
+                <div class="travel-details">
+                    <fieldset label="Arrival Details" class="w-1/2 ml-1">
+                        <legend>Arrival Details</legend>
+                        <div class="form-group">
+                            <label for="form-speaker-arrival-date">Your arrival date (Y-m-d):</label>
+                            <input id="form-speaker-arrival-date" type="text" name="speaker_arrival_date" placeholder="e.g. 2020-01-23" value="{{ speaker_arrival_date | default('') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-speaker-arrival-time">Your arrival time (HH:mm):</label>
+                            <input id="form-speaker-arrival-time" type="text" name="speaker_departure_time" placeholder="e.g. 14:30" value="{{ speaker_arrival_time | default('') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-speaker-arrival-flight">Your arrival flight number:</label>
+                            <input id="form-speaker-arrival-flight" type="text" name="speaker_arrival_flight" placeholder="e.g. UA951" value="{{ speaker_arrival_flight | default('') }}">
+                            <p><i>This is the flight directly to {{ site.airport }}</i></p>
+                        </div>
+                    </fieldset>
+                    <fieldset label="Departure Details" class="w-1/2 ml-2">
+                        <legend>Departure Details</legend>
+                        <div class="form-group">
+                            <label for="form-speaker-departure-date">Your departure date (Y-m-d):</label>
+                            <input id="form-speaker-departure-date" type="text" name="speaker_departure_date" placeholder="e.g. 2020-01-23" value="{{ speaker_departure_date | default('') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-speaker-departure-time">Your departure time (HH:mm):</label>
+                            <input id="form-speaker-departure-time" type="text" name="speaker_departure_time" placeholder="e.g. 14:30" value="{{ speaker_departure_time | default('') }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="form-speaker-departure-flight">Your departure flight number:</label>
+                            <input id="form-speaker-departure-flight" type="text" name="speaker_departure_flight" placeholder="e.g. UA950" value="{{ speaker_departure_flight | default('') }}">
+                            <p><i>This is the flight directly from {{ site.airport }}</i></p>
+                        </div>
+                    </fieldset>
+                </div>
             {% endif %}
 
+            <h3 class="text-base text-dark-soft mt-4">Dietary preferences and allergies</h3>
             <label for="form-user-dietary">Dietary Preferences</label>
             <select id="form-user-dietary" name="dietary_preference">
                 {% for value, text in {"nopref": "No preference", "vegetarian": "Vegetarian", "vegan": "Vegan"} %}
