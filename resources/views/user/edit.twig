@@ -22,6 +22,14 @@
 {% endblock %}
 
 {% block content %}
-    <h2 class="headline">My Profile</h2>
+<div class="flex">
+    <div class="w-1/2 mr-4">
+        <h2 class="headline">My Profile</h2>
+    </div>
+    <div class="w-1/2 mr-4">
+        <h2 class="headline text-right">Conference date {{ site.event_start | date(site.date_format, false) }} - {{ site.event_end | date(site.date_format, false) }}</h2>
+    </div>
+</div>
+
     {% include 'forms/_user.twig' %}
 {% endblock %}

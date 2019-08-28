@@ -2,7 +2,6 @@
     {% if id is defined %}
         <input name="id" type="hidden" value="{{ id }}">
     {% endif %}
-
     <div class="flex">
         <div class="w-1/2 mr-4">
             <label for="form-user-email"><span class="text-red-dark font-bold" title="Required Field">*</span> Email</label>
@@ -33,15 +32,17 @@
                     <label for="form-transportation" class="text-base text-normal text-dark">I need help with flight cost</label>
                 </div>
                 <div>
+                    <p class="text-xs text-em mb-2 text-dark-soft">Hotel included in <a href="/package" title="Review our speaker package" target="_blank">speaker package</a>.</p>
                     <input id="form-hotel" name="hotel" type="checkbox" value="1" {% if hotel == '1' %}checked{% endif %}>
-                    <label for="form-hotel" class="text-base text-normal text-dark">I need help with hotel cost</label>
+                    <label for="form-hotel" class="text-base text-normal text-dark">reimbursement travel cost</label>
                 </div>
 
                 <h3 class="text-base text-dark-soft mt-4">Speaker Dinner</h3>
-                <p>Speaker dinner will happen on {{ site.speaker_dinner_date | date(site.date_format, false) }}.</p>
+                <p class="text-xs text-em mb-2 text-dark-soft">Speaker dinner will happen on <strong>{{ site.speaker_dinner_date | date("l d/m/Y", false)}}</strong>.</p>
+                <input id="form-speaker-dinner-no" type="hidden" name="speaker_dinner" value="0">
                 <div>
-                    <input id="form-speaker_dinner" name="speaker_dinner" type="checkbox" value="1" {% if speaker_dinner == '1' %}checked{% endif %}>
-                    <label for="form-speaker_dinner" class="text-base text-normal text-dark">Yes, I will be present</label>
+                    <input id="form-speaker-dinner-yes" name="speaker_dinner" type="checkbox" value="1" {% if speaker_dinner == '1' %}checked{% endif %}>
+                    <label for="form-speaker-dinner-yes" class="text-base text-normal text-dark">Yes, I will be present</label>
                 </div>
             {% endif %}
         </div>
@@ -50,6 +51,21 @@
             <label for="form-user-bio">Speaker Bio</label>
             <textarea id="form-user-bio" name="speaker_bio" placeholder="Tell us about yourself ..." rows="5">{{ speaker_bio | default('') }}</textarea>
             <p class="text-xs text-em mb-2 text-dark-soft">Speaker bio can be written using <a href="https://daringfireball.net/projects/markdown/basics" target="_blank" class="text-underline" rel="noopener noreferrer">markdown</a> to support links</p>
+
+            <h3 class="text-base text-dark-soft mt-4">Dietary preferences and allergies</h3>
+            <label for="form-user-dietary">Dietary Preferences</label>
+            <select id="form-user-dietary" name="dietary_preference">
+                {% for value, text in {"nopref": "No preference", "vegetarian": "Vegetarian", "vegan": "Vegan"} %}
+                    {% if dietary_preference == value %}
+                        <option value="{{ value }}" selected="selected">{{ text }}</option>
+                    {% else %}
+                        <option value="{{ value }}">{{ text }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+
+            <label for="form-user-allergies">Food Allergies</label>
+            <textarea id="form-user-allergies" name="food_allergies" placeholder="Do you have any food allergies?" rows="5">{{ food_allergies | default('') }}</textarea>
 
             {% if site.online_conference == false %}
 
@@ -105,21 +121,6 @@
                     </fieldset>
                 </div>
             {% endif %}
-
-            <h3 class="text-base text-dark-soft mt-4">Dietary preferences and allergies</h3>
-            <label for="form-user-dietary">Dietary Preferences</label>
-            <select id="form-user-dietary" name="dietary_preference">
-                {% for value, text in {"nopref": "No preference", "vegetarian": "Vegetarian", "vegan": "Vegan"} %}
-                    {% if dietary_preference == value %}
-                        <option value="{{ value }}" selected="selected">{{ text }}</option>
-                    {% else %}
-                        <option value="{{ value }}">{{ text }}</option>
-                    {% endif %}
-                {% endfor %}
-            </select>
-
-            <label for="form-user-allergies">Food Allergies</label>
-            <textarea id="form-user-allergies" name="food_allergies" placeholder="Do you have any food allergies?" rows="5">{{ food_allergies | default('') }}</textarea>
 
             <label for="form-user-notes">Additional Notes</label>
             <textarea id="form-user-notes" name="speaker_info" placeholder="Any other information you feel the organizers should be aware of ..." rows="5">{{ speaker_info | default('') }}</textarea>
